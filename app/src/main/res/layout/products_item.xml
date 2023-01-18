@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="product"
+            type="com.zeyadmaamoun.android.e_commerceapp.models.Product" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.Material3.CardView.Elevated"
+        android:paddingBottom="8dp"
+        app:cardBackgroundColor="#C9FBF4"
+        app:cardCornerRadius="8dp"
+        android:background="#C9FBF4">
+
+        <LinearLayout
+            android:layout_width="160dp"
+            android:layout_height="200dp"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/product_image"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="4"
+                tools:src="@drawable/box"
+                style="@style/roundedCornersImageView"
+                imageUrl="@{product.image}"/>
+
+            <TextView
+                android:id="@+id/product_title"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@{product.title}"
+                android:textColor="@color/black"
+                android:layout_marginStart="8dp"
+                android:textSize="16dp"
+                android:gravity="center_vertical" />
+
+            <RatingBar
+                android:id="@+id/rating_bar"
+                android:layout_width="100dp"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:layout_marginStart="8dp"
+                android:numStars="5"
+                android:rating="@{product.rating.rate}" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>
