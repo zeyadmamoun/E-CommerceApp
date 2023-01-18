@@ -12,15 +12,16 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/Widget.Material3.CardView.Elevated"
+        style="@style/Widget.Material3.CardView.Outlined"
         android:paddingBottom="8dp"
-        app:cardBackgroundColor="#C9FBF4"
-        app:cardCornerRadius="8dp"
-        android:background="#C9FBF4">
+        app:cardBackgroundColor="#CEF3FA"
+        app:cardCornerRadius="16dp"
+        android:layout_marginBottom="16dp"
+        app:strokeWidth="0.5dp">
 
         <LinearLayout
-            android:layout_width="160dp"
-            android:layout_height="200dp"
+            android:layout_width="190dp"
+            android:layout_height="230dp"
             android:orientation="vertical"
             android:gravity="center_vertical">
 
@@ -30,6 +31,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="4"
                 tools:src="@drawable/box"
+                android:padding="8dp"
+                android:contentDescription="@string/product_image"
                 style="@style/roundedCornersImageView"
                 imageUrl="@{product.image}"/>
 
@@ -40,8 +43,9 @@
                 android:layout_weight="1"
                 android:text="@{product.title}"
                 android:textColor="@color/black"
-                android:layout_marginStart="8dp"
-                android:textSize="16dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:textSize="14sp"
                 android:gravity="center_vertical" />
 
             <RatingBar
@@ -49,9 +53,12 @@
                 android:layout_width="100dp"
                 android:layout_height="0dp"
                 android:layout_weight="0.5"
-                android:layout_marginStart="8dp"
-                android:numStars="5"
-                android:rating="@{product.rating.rate}" />
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="8dp"
+                android:numStars="4"
+                style="?android:attr/ratingBarStyleSmall"
+                android:rating="@{product.rating.rate}"
+                android:theme="@style/RatingBar"/>
 
         </LinearLayout>
 

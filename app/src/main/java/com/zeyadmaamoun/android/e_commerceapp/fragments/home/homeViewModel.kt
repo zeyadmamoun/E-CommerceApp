@@ -9,21 +9,40 @@ import com.zeyadmaamoun.android.e_commerceapp.models.Product
 import com.zeyadmaamoun.android.e_commerceapp.remote.ProductsApiService
 import kotlinx.coroutines.launch
 
+enum class Categories{
+    All,Electronics,Jewelery,Men,Women
+}
+
 class HomeViewModel(private val service: ProductsApiService) : ViewModel() {
 
-    private val _products = MutableLiveData<List<Product>>(emptyList())
-    val products: LiveData<List<Product>> = _products
+    //only products showing on the screen after being filtered.
+    private val _filteredProducts = MutableLiveData<List<Product>>(emptyList())
+    val filteredProducts: LiveData<List<Product>> = _filteredProducts
+
+    //all list of products.
+    private var allList = listOf<Product>()
+
+    //holding the current category value.
+    private var currentCategory = Categories.All
 
     init {
-        if (_products.value!!.isEmpty()) {
+        if (allList.isEmpty()) {
             getProducts()
         }
     }
 
+    //responsible for getting data from remote resource --> service instance provided in the constructor.
     private fun getProducts() {
         viewModelScope.launch {
-            _products.value = service.getProducts()
-            Log.i("HomeFragment", _products.value.toString())
+            allList = service.getProducts()
+            _filteredProducts.value = allList
+            Log.i("HomeFragment", allList.toString())
+            Log.i("HomeFragment", _filteredProducts.value.toString())
         }
+    }
+
+    //responsible for changing the current category user selected.
+    fun changeCategory(category: Categories){
+        currentCategory = category
     }
 }

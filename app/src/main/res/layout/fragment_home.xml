@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.zeyadmaamoun.android.e_commerceapp.fragments.home.HomeViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -18,7 +20,8 @@
                 android:id="@+id/search_bar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/search_for_products" />
+                android:hint="@string/search_for_products"
+                android:background="@color/white"/>
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -26,19 +29,20 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingHorizontal="8dp"
+            android:fillViewport="true"
+            android:layout_gravity="center_horizontal"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_gravity="center_horizontal">
 
                 <HorizontalScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="parent">
+                    android:layout_marginBottom="16dp">
 
                     <com.google.android.material.chip.ChipGroup
                         android:id="@+id/chip_group"
@@ -51,40 +55,45 @@
                             android:id="@+id/all_categories_chip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="all" />
+                            android:text="@string/all" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/electronics_chip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="electronics" />
+                            android:text="@string/electronics" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/jewelery_chip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="jewelery" />
+                            android:text="@string/jewelery" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/mens_clothing_chip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="men's clothing" />
+                            android:text="@string/men_s_clothing" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/women_clothing_chip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="women's clothing" />
+                            android:text="@string/women_s_clothing" />
 
                     </com.google.android.material.chip.ChipGroup>
 
                 </HorizontalScrollView>
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
+                    android:layout_weight="1"
+                    app:spanCount="2"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    listData="@{viewModel.filteredProducts}"
+                    android:layout_gravity="center_horizontal"/>
 
             </LinearLayout>
 
