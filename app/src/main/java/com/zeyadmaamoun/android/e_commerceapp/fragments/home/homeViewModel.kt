@@ -1,6 +1,5 @@
 package com.zeyadmaamoun.android.e_commerceapp.fragments.home
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,10 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.zeyadmaamoun.android.e_commerceapp.models.Product
 import com.zeyadmaamoun.android.e_commerceapp.remote.ProductsApiService
 import kotlinx.coroutines.launch
-
-enum class Categories{
-    All,Electronics,Jewelery,Men,Women
-}
 
 class HomeViewModel(private val service: ProductsApiService) : ViewModel() {
 
@@ -23,7 +18,7 @@ class HomeViewModel(private val service: ProductsApiService) : ViewModel() {
     private var allList = listOf<Product>()
 
     //holding the current category value.
-    private var currentCategory = Categories.All
+    private var currentCategory = "all"
 
     init {
         if (allList.isEmpty()) {
@@ -36,13 +31,22 @@ class HomeViewModel(private val service: ProductsApiService) : ViewModel() {
         viewModelScope.launch {
             allList = service.getProducts()
             _filteredProducts.value = allList
-            Log.i("HomeFragment", allList.toString())
-            Log.i("HomeFragment", _filteredProducts.value.toString())
         }
     }
 
     //responsible for changing the current category user selected.
-    fun changeCategory(category: Categories){
+    fun changeCategory(category: String){
         currentCategory = category
+        filterByCategory()
+    }
+
+    //responsible for filtering the data due to current category variable.
+    private fun filterByCategory(){
+        if (currentCategory == "all"){
+            _filteredProducts.value = allList
+        }else{
+            val filtered = allList.filter { it.category == currentCategory }
+            _filteredProducts.value = filtered
+        }
     }
 }
