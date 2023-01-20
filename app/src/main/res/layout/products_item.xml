@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         style="@style/Widget.Material3.CardView.Outlined"
         android:paddingBottom="8dp"
-        app:cardBackgroundColor="#CEF3FA"
+        app:cardBackgroundColor="@color/md_theme_light_secondaryContainer"
         app:cardCornerRadius="16dp"
         android:layout_marginBottom="16dp"
         app:strokeWidth="0.5dp">
