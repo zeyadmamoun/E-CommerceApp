@@ -4,6 +4,8 @@ import android.app.Application
 import com.zeyadmaamoun.android.e_commerceapp.fragments.home.HomeViewModel
 import com.zeyadmaamoun.android.e_commerceapp.remote.ProductApiImplementation
 import com.zeyadmaamoun.android.e_commerceapp.remote.ProductsApiService
+import com.zeyadmaamoun.android.e_commerceapp.utils.ConnectivityObserver
+import com.zeyadmaamoun.android.e_commerceapp.utils.NetworkConnectivityUtils
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.*
@@ -36,6 +38,10 @@ class MyApp : Application() {
 
             viewModel {
                 HomeViewModel(get())
+            }
+
+            factory<ConnectivityObserver> {
+                NetworkConnectivityUtils(get())
             }
         }
 

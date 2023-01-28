@@ -20,31 +20,27 @@ class HomeViewModel(private val service: ProductsApiService) : ViewModel() {
     //holding the current category value.
     private var currentCategory = "all"
 
-    init {
-        if (allList.isEmpty()) {
-            getProducts()
-        }
-    }
-
     //responsible for getting data from remote resource --> service instance provided in the constructor.
-    private fun getProducts() {
-        viewModelScope.launch {
-            allList = service.getProducts()
-            _filteredProducts.value = allList
+    fun getProducts() {
+        if (allList.isEmpty()) {
+            viewModelScope.launch {
+                allList = service.getProducts()
+                _filteredProducts.value = allList
+            }
         }
     }
 
     //responsible for changing the current category user selected.
-    fun changeCategory(category: String){
+    fun changeCategory(category: String) {
         currentCategory = category
         filterByCategory()
     }
 
     //responsible for filtering the data due to current category variable.
-    private fun filterByCategory(){
-        if (currentCategory == "all"){
+    private fun filterByCategory() {
+        if (currentCategory == "all") {
             _filteredProducts.value = allList
-        }else{
+        } else {
             val filtered = allList.filter { it.category == currentCategory }
             _filteredProducts.value = filtered
         }
