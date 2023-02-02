@@ -11,7 +11,7 @@ import com.zeyadmaamoun.android.e_commerceapp.models.Product
 class ProductsListAdapter(private val onItemClicked: (Product)-> Unit) :
     ListAdapter<Product, ProductsListAdapter.ProductViewHolder>(DiffCallback) {
 
-    class ProductViewHolder(val binding: ProductsItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ProductViewHolder(private val binding: ProductsItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(product: Product){
             binding.product = product
         }
