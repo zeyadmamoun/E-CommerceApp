@@ -8,6 +8,10 @@ import com.zeyadmaamoun.android.e_commerceapp.models.Product
 import com.zeyadmaamoun.android.e_commerceapp.remote.ProductsApiService
 import kotlinx.coroutines.launch
 
+enum class LoadingStatus {
+    Loading, Success, Failed
+}
+
 class HomeViewModel(private val service: ProductsApiService) : ViewModel() {
 
     //only products showing on the screen after being filtered.
@@ -20,12 +24,22 @@ class HomeViewModel(private val service: ProductsApiService) : ViewModel() {
     //holding the current category value.
     private var currentCategory = "all"
 
+    //holding the state of loaded data.
+    private val _status = MutableLiveData<LoadingStatus>()
+    val status: LiveData<LoadingStatus> = _status
+
     //responsible for getting data from remote resource --> service instance provided in the constructor.
     fun getProducts() {
         if (allList.isEmpty()) {
+            _status.value = LoadingStatus.Loading
             viewModelScope.launch {
-                allList = service.getProducts()
-                _filteredProducts.value = allList
+                try {
+                    allList = service.getProducts()!!
+                    _filteredProducts.value = allList
+                    _status.value = LoadingStatus.Success
+                } catch (e: NullPointerException) {
+                    _status.value = LoadingStatus.Failed
+                }
             }
         }
     }

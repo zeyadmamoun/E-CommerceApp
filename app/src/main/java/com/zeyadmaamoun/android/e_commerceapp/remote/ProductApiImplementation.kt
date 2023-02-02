@@ -8,12 +8,12 @@ import io.ktor.client.request.*
 
 class ProductApiImplementation(private var client: HttpClient) : ProductsApiService {
 
-    override suspend fun getProducts(): List<Product> {
+    override suspend fun getProducts(): List<Product>? {
         return try {
             client.get("https://fakestoreapi.com/products").body()
         } catch (e: Exception) {
-            println(e.toString())
-            emptyList()
+            Log.i("Ktor Client", e.toString())
+            null
         }
     }
 

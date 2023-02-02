@@ -20,6 +20,6 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         binding.bottomNavigationBar.setupWithNavController(navController)
-        binding.bottomNavigationBar.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_SELECTED
+        binding.bottomNavigationBar.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_LABELED
     }
 }
