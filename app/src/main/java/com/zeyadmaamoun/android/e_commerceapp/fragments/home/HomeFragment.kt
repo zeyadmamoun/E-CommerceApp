@@ -5,6 +5,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -43,7 +45,7 @@ class HomeFragment : Fragment() {
             .setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE)
             .setDuration(Snackbar.LENGTH_SHORT)
 
-        loadingSnackbar = Snackbar.make(requireActivity(),binding.coordinator,"Loading.....",Snackbar.LENGTH_SHORT)
+        loadingSnackbar = Snackbar.make(requireActivity(),binding.coordinator,"Loading .....",Snackbar.LENGTH_SHORT)
             .setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE)
             .setDuration(Snackbar.LENGTH_INDEFINITE)
 
@@ -68,6 +70,7 @@ class HomeFragment : Fragment() {
         binding.viewModel = viewModel
 
         onCategoryChanged()
+        onSearchViewUsed()
     }
 
     //here we take the text of the chip when selected and do the filtering on that text
@@ -101,6 +104,22 @@ class HomeFragment : Fragment() {
                         .setAction("Retry") { viewModel.getProducts() }
                         .show()
                 }
+            }
+        }
+    }
+
+    //here we observe user queries in SearchView and execute the search upon the query he entered.
+    private fun onSearchViewUsed(){
+        binding.apply {
+            searchView.editText.addTextChangedListener {
+                searchBar.text = searchView.text
+            }
+            searchView.editText.setOnEditorActionListener { _, i, _ ->
+                if (i == EditorInfo.IME_ACTION_SEARCH){
+                    println(searchView.text)
+                    searchView.hide()
+                }
+                true
             }
         }
     }
