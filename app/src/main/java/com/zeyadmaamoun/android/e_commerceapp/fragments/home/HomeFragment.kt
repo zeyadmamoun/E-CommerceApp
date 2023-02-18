@@ -1,7 +1,6 @@
 package com.zeyadmaamoun.android.e_commerceapp.fragments.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +9,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
 import com.zeyadmaamoun.android.e_commerceapp.R
@@ -62,7 +62,8 @@ class HomeFragment : Fragment() {
         }
 
         val adapter = ProductsListAdapter {
-            Log.i("HomeFragment", "${it.title} is clicked")
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(it.id)
+            this.findNavController().navigate(action)
         }
 
         binding.recyclerView.adapter = adapter
@@ -116,7 +117,7 @@ class HomeFragment : Fragment() {
             }
             searchView.editText.setOnEditorActionListener { _, i, _ ->
                 if (i == EditorInfo.IME_ACTION_SEARCH){
-                    println(searchView.text)
+//                    TODO("Here put your search functionality")
                     searchView.hide()
                 }
                 true

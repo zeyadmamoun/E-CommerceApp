@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources >
     <!-- Base application theme. -->
     <style name="Theme.EcommerceApp" parent="Theme.Material3.Dark.NoActionBar">
         <!-- Primary brand color. -->
@@ -28,8 +28,11 @@
         <item name="colorOnSurfaceInverse">@color/md_theme_dark_inverseOnSurface</item>
         <item name="colorSurfaceInverse">@color/md_theme_dark_inverseSurface</item>
         <item name="colorPrimaryInverse">@color/md_theme_dark_inversePrimary</item>
-        <item name="chipStyle">@style/ChipFilterStyle</item>
-        <item name="android:statusBarColor">@color/md_theme_dark_secondary</item>
+        <item name="android:statusBarColor">@color/md_theme_dark_surface</item>
+    </style>
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlActivated">@color/md_theme_dark_secondary</item>
     </style>
 
     <style name="ChipFilterStyle" parent="Widget.Material3.Chip.Filter">

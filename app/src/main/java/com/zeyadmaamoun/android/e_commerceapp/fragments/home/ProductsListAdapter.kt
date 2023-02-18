@@ -14,6 +14,7 @@ class ProductsListAdapter(private val onItemClicked: (Product)-> Unit) :
     class ProductViewHolder(private val binding: ProductsItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(product: Product){
             binding.product = product
+            binding.executePendingBindings()
         }
     }
 

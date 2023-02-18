@@ -1,9 +1,12 @@
 package com.zeyadmaamoun.android.e_commerceapp
 
 import android.app.Application
+import com.zeyadmaamoun.android.e_commerceapp.fragments.cart.CartViewModel
+import com.zeyadmaamoun.android.e_commerceapp.fragments.details.DetailsViewModel
 import com.zeyadmaamoun.android.e_commerceapp.fragments.home.HomeViewModel
 import com.zeyadmaamoun.android.e_commerceapp.remote.ProductApiImplementation
 import com.zeyadmaamoun.android.e_commerceapp.remote.ProductsApiService
+import com.zeyadmaamoun.android.e_commerceapp.repository.CartProductsRepository
 import com.zeyadmaamoun.android.e_commerceapp.utils.ConnectivityObserver
 import com.zeyadmaamoun.android.e_commerceapp.utils.NetworkConnectivityUtils
 import io.ktor.client.*
@@ -36,8 +39,20 @@ class MyApp : Application() {
                 ProductApiImplementation(get())
             }
 
+            single {
+                CartProductsRepository()
+            }
+
             viewModel {
                 HomeViewModel(get())
+            }
+
+            viewModel {
+                CartViewModel(get(),get())
+            }
+
+            viewModel {
+                DetailsViewModel(get(),get())
             }
 
             factory<ConnectivityObserver> {

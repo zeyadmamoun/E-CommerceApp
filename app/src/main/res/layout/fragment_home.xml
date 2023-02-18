@@ -21,8 +21,7 @@
                 android:id="@+id/search_bar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/search_for_products"
-                android:background="@color/white"/>
+                android:hint="@string/search_for_products" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
