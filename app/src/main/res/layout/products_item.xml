@@ -53,7 +53,7 @@
                 android:layout_weight="0.5"
                 android:layout_marginStart="16dp"
                 android:layout_marginBottom="8dp"
-                android:numStars="4"
+                android:numStars="5"
                 style="?android:attr/ratingBarStyleSmall"
                 android:rating="@{product.rating.rate}"
                 android:theme="@style/RatingBar"/>

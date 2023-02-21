@@ -7,7 +7,7 @@
 
         <variable
             name="cartProduct"
-            type="com.zeyadmaamoun.android.e_commerceapp.models.CartProduct" />
+            type="com.zeyadmaamoun.android.e_commerceapp.data.CartProduct" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

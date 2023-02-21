@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.zeyadmaamoun.android.e_commerceapp.databinding.CartItemBinding
-import com.zeyadmaamoun.android.e_commerceapp.models.CartProduct
+import com.zeyadmaamoun.android.e_commerceapp.data.CartProduct
 import com.zeyadmaamoun.android.e_commerceapp.models.Product
 
 class CartProductsAdapter(private val onItemClicked: (Product)-> Unit = {}) :

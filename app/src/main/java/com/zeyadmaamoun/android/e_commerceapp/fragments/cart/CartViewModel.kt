@@ -3,7 +3,7 @@ package com.zeyadmaamoun.android.e_commerceapp.fragments.cart
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.zeyadmaamoun.android.e_commerceapp.models.CartProduct
+import com.zeyadmaamoun.android.e_commerceapp.data.CartProduct
 import com.zeyadmaamoun.android.e_commerceapp.remote.ProductsApiService
 import com.zeyadmaamoun.android.e_commerceapp.repository.CartProductsRepository
 

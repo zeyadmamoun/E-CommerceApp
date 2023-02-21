@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.zeyadmaamoun.android.e_commerceapp.fragments.cart.CartProductsAdapter
 import com.zeyadmaamoun.android.e_commerceapp.fragments.home.ProductsListAdapter
-import com.zeyadmaamoun.android.e_commerceapp.models.CartProduct
+import com.zeyadmaamoun.android.e_commerceapp.data.CartProduct
 import com.zeyadmaamoun.android.e_commerceapp.models.Product
 
 @BindingAdapter("imageUrl")

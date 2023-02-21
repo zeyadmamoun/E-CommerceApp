@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Base application theme. -->
     <style name="Theme.EcommerceApp" parent="Theme.Material3.Light.NoActionBar">
         <!-- Primary brand color. -->
@@ -47,6 +47,12 @@
 
     <style name="RatingBar" parent="Theme.AppCompat">
         <item name="colorControlActivated">@color/md_theme_dark_secondary</item>
+    </style>
+
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@android:color/black</item>
     </style>
 
 </resources>

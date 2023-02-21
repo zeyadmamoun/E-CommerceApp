@@ -39,9 +39,8 @@ class DetailsFragment : Fragment() {
             .setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE)
             .setDuration(Snackbar.LENGTH_INDEFINITE)
 
-        viewModel.productInDetails.observe(viewLifecycleOwner){
-            binding.detailsFragmentTv.text = it.title
-        }
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.detailsViewModel = viewModel
 
         viewModel.getProductById(args.productId)
         checkLoadingDataStatus()
@@ -59,7 +58,7 @@ class DetailsFragment : Fragment() {
                 }
                 else -> {
                     loadingSnackbar.dismiss()
-                    Snackbar.make(requireActivity(),binding.layout,"Loading Failed", Snackbar.LENGTH_INDEFINITE)
+                    Snackbar.make(requireActivity(),binding.detailsCoordinator,"Loading Failed", Snackbar.LENGTH_INDEFINITE)
                         .setAction("Retry") { viewModel.getProductById(args.productId) }
                         .show()
                 }

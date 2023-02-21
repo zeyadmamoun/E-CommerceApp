@@ -36,6 +36,11 @@
     </style>
 
     <style name="ChipFilterStyle" parent="Widget.Material3.Chip.Filter">
+    </style>
 
+    <style name="Divider">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@android:color/white</item>
     </style>
 </resources>
