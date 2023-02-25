@@ -41,7 +41,5 @@ class NetworkConnectivityUtils(context: Context) : ConnectivityObserver {
             }
         }.distinctUntilChanged()
     }
-
-
 }
 

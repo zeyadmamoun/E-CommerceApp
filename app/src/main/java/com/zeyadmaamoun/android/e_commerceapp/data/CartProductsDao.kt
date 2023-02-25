@@ -2,7 +2,6 @@ package com.zeyadmaamoun.android.e_commerceapp.data
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
-import com.zeyadmaamoun.android.e_commerceapp.data.CartProduct
 
 @Dao
 interface CartProductsDao {
@@ -16,6 +15,6 @@ interface CartProductsDao {
     @Delete
     suspend fun deleteProduct(cartProduct: CartProduct)
 
-    @Query("SELECT * FROM")
-    fun getProducts(): Flow<List<CartProduct>>
+    @Query("SELECT * FROM cart_products")
+    fun getCartProducts(): Flow<List<CartProduct>>
 }

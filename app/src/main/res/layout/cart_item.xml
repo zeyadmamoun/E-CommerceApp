@@ -43,7 +43,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="28dp"
-                android:text="@{cartProduct.name}"
+                android:text="@{cartProduct.shortenName()}"
                 android:textSize="16sp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -71,7 +71,8 @@
                 app:layout_constraintTop_toBottomOf="@id/card_product_price">
 
                 <Button
-                    style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
+                    android:id="@+id/add_unit"
+                    style="@style/Widget.Material3.Button.IconButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -89,7 +90,8 @@
                     android:textSize="15sp" />
 
                 <Button
-                    style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
+                    android:id="@+id/remove_unit"
+                    style="@style/Widget.Material3.Button.IconButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

@@ -6,6 +6,5 @@ import kotlinx.coroutines.flow.Flow
 //for connection --> (Connected,Disconnected)
 interface ConnectivityObserver {
     suspend fun observe(): Flow<ConnectionStatus>
-
     enum class ConnectionStatus{ Connected,Disconnected }
 }

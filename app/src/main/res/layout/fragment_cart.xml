@@ -18,23 +18,62 @@
             android:id="@+id/myCart_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:textSize="26sp"
-            android:paddingVertical="16dp"
             android:layout_marginStart="16dp"
-            android:text="@string/my_cart_string"/>
+            android:paddingVertical="16dp"
+            android:text="@string/my_cart_string"
+            android:textSize="26sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cartRecyclerView"
+            listCartData="@{cartViewModel.cartProds}"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@id/myCart_tv"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:paddingTop="8dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            listCartData="@{cartViewModel.cartProds}"
-            android:paddingTop="8dp"/>
+            app:layout_constraintBottom_toTopOf="@id/guideline1"
+            app:layout_constraintTop_toBottomOf="@id/myCart_tv" />
+        
+        <TextView
+            android:id="@+id/total_cost_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Cost"
+            app:layout_constraintTop_toBottomOf="@id/guideline1"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="16dp"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/cost_number_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="200 EGP"
+            app:layout_constraintTop_toBottomOf="@id/total_cost_tv"
+            app:layout_constraintStart_toStartOf="@id/total_cost_tv"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"/>
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/confirm_btn"
+            style="@style/Widget.Material3.FloatingActionButton.Secondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="Confirm"
+            app:icon="@drawable/ic_cart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.9"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

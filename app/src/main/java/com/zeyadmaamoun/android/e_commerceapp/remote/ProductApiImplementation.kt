@@ -7,7 +7,6 @@ import io.ktor.client.call.*
 import io.ktor.client.request.*
 
 class ProductApiImplementation(private var client: HttpClient) : ProductsApiService {
-
     override suspend fun getProducts(): List<Product>? {
         return try {
             client.get("https://fakestoreapi.com/products").body()
@@ -16,7 +15,6 @@ class ProductApiImplementation(private var client: HttpClient) : ProductsApiServ
             null
         }
     }
-
     override suspend fun getProductById(productId: Int): Product? {
         return try {
             client.get("https://fakestoreapi.com/products/$productId").body()

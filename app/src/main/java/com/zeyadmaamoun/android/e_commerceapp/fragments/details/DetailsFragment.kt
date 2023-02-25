@@ -11,6 +11,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.zeyadmaamoun.android.e_commerceapp.R
 import com.zeyadmaamoun.android.e_commerceapp.databinding.FragmentDetailsBinding
 import com.zeyadmaamoun.android.e_commerceapp.fragments.home.LoadingStatus
+import kotlinx.coroutines.runBlocking
 import org.koin.android.ext.android.inject
 
 class DetailsFragment : Fragment() {
@@ -44,6 +45,17 @@ class DetailsFragment : Fragment() {
 
         viewModel.getProductById(args.productId)
         checkLoadingDataStatus()
+
+        binding.addToCartBtn.setOnClickListener {
+            viewModel.apply {
+                if (productInDetails.value != null){
+                    runBlocking {
+                        sendToCart(productInDetails.value!!)
+                    }
+                    loadingSnackbar.setText("Added to cart").show()
+                }
+            }
+        }
     }
 
     // here we observe the status of data coming from getProductById().

@@ -1,6 +1,7 @@
 package com.zeyadmaamoun.android.e_commerceapp
 
 import android.app.Application
+import com.zeyadmaamoun.android.e_commerceapp.data.CartDatabase
 import com.zeyadmaamoun.android.e_commerceapp.fragments.cart.CartViewModel
 import com.zeyadmaamoun.android.e_commerceapp.fragments.details.DetailsViewModel
 import com.zeyadmaamoun.android.e_commerceapp.fragments.home.HomeViewModel
@@ -39,10 +40,6 @@ class MyApp : Application() {
                 ProductApiImplementation(get())
             }
 
-            single {
-                CartProductsRepository()
-            }
-
             viewModel {
                 HomeViewModel(get())
             }
@@ -53,6 +50,14 @@ class MyApp : Application() {
 
             viewModel {
                 DetailsViewModel(get(),get())
+            }
+
+            single {
+                CartDatabase.getDatabase(this@MyApp)
+            }
+
+            single {
+                CartProductsRepository(get())
             }
 
             factory<ConnectivityObserver> {
