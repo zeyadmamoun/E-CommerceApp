@@ -1,12 +1,12 @@
 package com.zeyadmaamoun.android.e_commerceapp.fragments.cart
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.zeyadmaamoun.android.e_commerceapp.data.CartProduct
 import com.zeyadmaamoun.android.e_commerceapp.remote.ProductsApiService
 import com.zeyadmaamoun.android.e_commerceapp.repository.CartProductsRepository
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.launch
 
 
@@ -16,6 +16,8 @@ class CartViewModel(
 ) : ViewModel() , CartItemFeatures {
 
     val cartProds: LiveData<List<CartProduct>> = repository.getCartProducts().asLiveData()
+    private val _totalCost = MutableLiveData(0.0)
+    val totalCost: LiveData<Double> = _totalCost
 
     private fun updateProduct(cartProduct: CartProduct){
         viewModelScope.launch {
@@ -27,6 +29,14 @@ class CartViewModel(
         viewModelScope.launch {
             repository.deleteProduct(cartProduct)
         }
+    }
+
+    fun getTotalCost(productsList: List<CartProduct>){
+        var total = 0.0
+        productsList.forEach { product ->
+            total += product.units.times(product.price)
+        }
+        _totalCost.value = String.format("%.1f", total).toDouble()
     }
 
     // coming functions are implementation to CartItemFeatures interface that we will send

@@ -49,7 +49,7 @@ class HomeFragment : Fragment() {
             .setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE)
             .setDuration(Snackbar.LENGTH_INDEFINITE)
 
-        //here we observe the connection status and upon it we make a decision.
+        // here we observe the connection status and upon it we make a decision.
         lifecycleScope.launch {
             connectivityObserver.observe().collectLatest { status ->
                 if (status == ConnectivityObserver.ConnectionStatus.Connected) {

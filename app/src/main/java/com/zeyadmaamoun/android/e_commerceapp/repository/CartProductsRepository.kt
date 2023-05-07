@@ -11,7 +11,6 @@ class CartProductsRepository(
     private val database: CartDatabase,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
     ) {
-
     suspend fun addToCart(cartProduct: CartProduct){
         withContext(ioDispatcher){
             database.cartDao().addProduct(cartProduct)
@@ -33,5 +32,4 @@ class CartProductsRepository(
             database.cartDao().deleteProduct(cartProduct)
         }
     }
-
 }

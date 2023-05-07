@@ -6,8 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.zeyadmaamoun.android.e_commerceapp.R
 import com.zeyadmaamoun.android.e_commerceapp.databinding.FragmentCartBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
 class CartFragment : Fragment(){
@@ -28,6 +34,10 @@ class CartFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.cartProds.observe(viewLifecycleOwner){
+            viewModel.getTotalCost(it)
+        }
 
         val adapter = CartProductsAdapter(viewModel)
         binding.cartRecyclerView.adapter = adapter
